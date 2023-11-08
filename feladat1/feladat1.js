@@ -35,3 +35,60 @@ function KorKerTer(r) {
 console.log(VanENegativ([5, 12, 23, -5, 14]));
 console.log(VanENegativ([5, 12, 23, 14]));
 console.log(KorKerTer(4));
+/*
+- Keszits publikus GitHub repositorit a sajat felhasznaloi fiokodban
+- Indits Git BASH-t, es a jelenlegi TS projektedben inicializalj git-et
+- A lokalis repo-t kosd ossze az online (github-os) repoddal
+- Toltsd fel a jelenlegi allapotot a github-ra
+*/
+/*
+TS!!
+- Keszits alprogramot, ami kivalasztja egy auto tombbol a legkisebb hengerurtartalmu autot
+- Keszits alprogramot, ami megadja a parameterul kapott auto tombbol a benzinesek darabszamat
+- A valtoztatasokat toltsd fel a github repodba
+*/
+function MinAuto(autok) {
+    var min = autok[0];
+    for (var i = 0; i < autok.length; i++) {
+        if (autok[i].hengerurtartalom < min.hengerurtartalom) {
+            min = autok[i];
+        }
+    }
+    return min;
+}
+function BenzinesDb(autok) {
+    var db = 0;
+    for (var i = 0; i < autok.length; i++) {
+        if (autok[i].benzinesE /*== true*/) {
+            db++;
+        }
+    }
+    return db;
+}
+var a1 = {
+    gyarto: "Opel",
+    tipus: "Astra",
+    hengerurtartalom: 1600,
+    benzinesE: true
+};
+var a2 = {
+    gyarto: "BMW",
+    tipus: "i3",
+    hengerurtartalom: 0,
+    benzinesE: false
+};
+var a3 = {
+    gyarto: "Volkswagen",
+    tipus: "Passat",
+    hengerurtartalom: 2200,
+    benzinesE: false
+};
+var a4 = {
+    gyarto: "Ford",
+    tipus: "Mondeo",
+    hengerurtartalom: 1700,
+    benzinesE: true
+};
+var autok = [a1, a2, a3, a4];
+console.log(MinAuto(autok));
+console.log(BenzinesDb(autok));
