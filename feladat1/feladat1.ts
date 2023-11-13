@@ -120,3 +120,53 @@ var autok:Auto[] = [a1, a2, a3, a4];
 
 console.log(MinAuto(autok));
 console.log(BenzinesDb(autok));
+
+/*
+- Keszits alprogramot, ami..
+    - Egy auto tombbol megadja az atlag hengerurtartalmat
+    - Eldonti, hogy van-e nem benzines auto az autok tombben
+    - Szetvalogatja a benzines es nem benzines autokat
+
+- A valtoztatasokat toltsd fel a github repodba
+*/
+
+function AtlagCcm(autok:Auto[]):number{
+    var atlag:number = 0;
+
+    for(var i:number = 0; i < autok.length; i++){
+        atlag += autok[i].hengerurtartalom;
+    }
+
+    atlag /= autok.length;
+    return atlag;
+}  
+
+function VanENemBenzines(autok:Auto[]):boolean{
+    var i:number = 0;
+
+    while(i < autok.length && !(autok[i].benzinesE == false)){
+        i++;
+    }
+
+    return i < autok.length;   
+}
+
+function BenzinesekSzetvalogatasa(autok:Auto[]):[Auto[], Auto[]]{
+    var benzinesek:Auto[] = [];
+    var nemBenzinesek:Auto[] = [];
+
+    for(var i:number = 0; i < autok.length; i++){
+        if(autok[i].benzinesE /*== true*/){
+            benzinesek.push(autok[i]);
+        }
+        else{
+            nemBenzinesek.push(autok[i]);
+        }
+    }
+
+    return [benzinesek, nemBenzinesek];
+}
+
+console.log(AtlagCcm(autok));
+console.log(VanENemBenzines(autok));
+console.log(BenzinesekSzetvalogatasa(autok));
