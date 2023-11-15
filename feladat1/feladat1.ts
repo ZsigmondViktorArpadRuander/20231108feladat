@@ -76,6 +76,18 @@ function MinAuto(autok:Auto[]):Auto{
     return min;
 }
 
+function MaxAuto(autok:Auto[]):Auto{
+    var max:Auto = autok[0];
+
+    for(var i:number = 0; i < autok.length; i++){
+        if(autok[i].hengerurtartalom > max.hengerurtartalom){
+            max = autok[i];
+        }
+    }
+
+    return max;
+}
+
 function BenzinesDb(autok:Auto[]):number{
     var db:number = 0;
 
@@ -91,7 +103,7 @@ function BenzinesDb(autok:Auto[]):number{
 var a1:Auto = {
     gyarto: "Opel",
     tipus: "Astra",
-    hengerurtartalom: 1600,
+    hengerurtartalom: 1600.7,
     benzinesE: true
 };
 
@@ -105,7 +117,7 @@ var a2:Auto = {
 var a3:Auto = {
     gyarto: "Volkswagen",
     tipus: "Passat",
-    hengerurtartalom: 2200,
+    hengerurtartalom: 2200.6,
     benzinesE: false
 };
 
@@ -170,3 +182,37 @@ function BenzinesekSzetvalogatasa(autok:Auto[]):[Auto[], Auto[]]{
 console.log(AtlagCcm(autok));
 console.log(VanENemBenzines(autok));
 console.log(BenzinesekSzetvalogatasa(autok));
+
+/*
+Keszits alprogramot, ami...
+- Visszaadja egy auto tombbol a legnagyobb hengerurtartalmu auto gyartojat
+- Visszaadja egy auto tombbol azokat az autokat, amiknek hengerurtartalma egesz szam
+- Visszaadja egy auto tombbol a legkisebb hengerurtartalmu autot
+- Visszaadja a legkisebb hengerurtartalmu auto gyartojat es tipusat
+*/
+
+function MaxAutoGyarto(autok:Auto[]):string{
+    var maxauto:Auto = MaxAuto(autok);
+    return maxauto.gyarto;
+}
+
+function AutokEgeszCcm(autok:Auto[]):Auto[]{
+    var egeszCcmAutok:Auto[] = [];
+
+    for(var i:number = 0; i < autok.length; i++){
+        if(autok[i].hengerurtartalom % 1 == 0){
+            egeszCcmAutok.push(autok[i]);
+        }
+    }
+
+    return egeszCcmAutok;
+}
+
+function MinAutoGyartoTipus(autok:Auto[]):[string, string]{
+    var minauto:Auto = MinAuto(autok);
+    return [minauto.gyarto, minauto.tipus];
+}
+
+console.log(MaxAutoGyarto(autok));
+console.log(AutokEgeszCcm(autok));
+console.log(MinAutoGyartoTipus(autok));

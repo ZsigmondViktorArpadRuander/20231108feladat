@@ -56,6 +56,15 @@ function MinAuto(autok) {
     }
     return min;
 }
+function MaxAuto(autok) {
+    var max = autok[0];
+    for (var i = 0; i < autok.length; i++) {
+        if (autok[i].hengerurtartalom > max.hengerurtartalom) {
+            max = autok[i];
+        }
+    }
+    return max;
+}
 function BenzinesDb(autok) {
     var db = 0;
     for (var i = 0; i < autok.length; i++) {
@@ -68,7 +77,7 @@ function BenzinesDb(autok) {
 var a1 = {
     gyarto: "Opel",
     tipus: "Astra",
-    hengerurtartalom: 1600,
+    hengerurtartalom: 1600.7,
     benzinesE: true
 };
 var a2 = {
@@ -80,7 +89,7 @@ var a2 = {
 var a3 = {
     gyarto: "Volkswagen",
     tipus: "Passat",
-    hengerurtartalom: 2200,
+    hengerurtartalom: 2200.6,
     benzinesE: false
 };
 var a4 = {
@@ -131,3 +140,30 @@ function BenzinesekSzetvalogatasa(autok) {
 console.log(AtlagCcm(autok));
 console.log(VanENemBenzines(autok));
 console.log(BenzinesekSzetvalogatasa(autok));
+/*
+Keszits alprogramot, ami...
+- Visszaadja egy auto tombbol a legnagyobb hengerurtartalmu auto gyartojat
+- Visszaadja egy auto tombbol azokat az autokat, amiknek hengerurtartalma egesz szam
+- Visszaadja egy auto tombbol a legkisebb hengerurtartalmu autot
+- Visszaadja a legkisebb hengerurtartalmu auto gyartojat es tipusat
+*/
+function MaxAutoGyarto(autok) {
+    var maxauto = MaxAuto(autok);
+    return maxauto.gyarto;
+}
+function AutokEgeszCcm(autok) {
+    var egeszCcmAutok = [];
+    for (var i = 0; i < autok.length; i++) {
+        if (autok[i].hengerurtartalom % 1 == 0) {
+            egeszCcmAutok.push(autok[i]);
+        }
+    }
+    return egeszCcmAutok;
+}
+function MinAutoGyartoTipus(autok) {
+    var minauto = MinAuto(autok);
+    return [minauto.gyarto, minauto.tipus];
+}
+console.log(MaxAutoGyarto(autok));
+console.log(AutokEgeszCcm(autok));
+console.log(MinAutoGyartoTipus(autok));
